@@ -1,4 +1,5 @@
 #include <math.h>
+#include "algorithms.h"
 #include "geo_array.h"
 
 static double rdp_find_perpendicular_distable(double pX, double pY, double p1X, double p1Y, double p2X, double p2Y)
@@ -50,4 +51,20 @@ void rdp_simplify(geo_array *points, double epsilon, int start, int end)
 		}
 		return;
 	}
+}
+
+int polar_to_cartesian(double radius, double angle, double *x, double *y)
+{
+	/* PHP:
+	$x = $radius * cos(deg2rad(angle));
+	$y = $radius * sin(deg2rad(angle));
+	*/
+}
+
+int cartesian_to_polar(double x, double y, double *radius, double *angle)
+{
+	/* PHP:
+	$radius = sqrt($x * $x + $y * $y);
+	$angle  = rad2deg(atan2($y, $x));
+	*/
 }

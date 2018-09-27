@@ -71,6 +71,24 @@ failure:
 	return NULL;
 }
 
+PHP_FUNCTION(polar_to_cartesian)
+{
+	// variable declarations
+	// zend_parse_parameters call
+	// convert data
+	// call polar_to_cartesian
+	// convert result to array and return
+}
+
+PHP_FUNCTION(cartesian_to_polar)
+{
+	// variable declarations
+	// zend_parse_parameters call
+	// convert data
+	// call cartesian_to_polar
+	// convert result to array and return
+}
+
 PHP_FUNCTION(rdp_simplify)
 {
 	zval      *points_array;
