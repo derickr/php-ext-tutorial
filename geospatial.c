@@ -74,19 +74,47 @@ failure:
 PHP_FUNCTION(polar_to_cartesian)
 {
 	// variable declarations
+	double radius, degrees;
+	double x, y;
+
 	// zend_parse_parameters call
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "dd", &radius, &degrees) == FAILURE) {
+		return;
+	}
+
 	// convert data
+	/* Not needed */
+
 	// call polar_to_cartesian
+	polar_to_cartesian(radius, degrees, &x, &y);
+
 	// convert result to array and return
+	array_init(return_value);
+	add_next_index_double(return_value, x);
+	add_next_index_double(return_value, y);
 }
 
 PHP_FUNCTION(cartesian_to_polar)
 {
 	// variable declarations
+	double x, y;
+	double radius, degrees;
+
 	// zend_parse_parameters call
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "dd", &x, &y) == FAILURE) {
+		return;
+	}
+
 	// convert data
+	/* Not needed */
+
 	// call cartesian_to_polar
+	cartesian_to_polar(x, y, &radius, &degrees);
+
 	// convert result to array and return
+	array_init(return_value);
+	add_next_index_double(return_value, radius);
+	add_next_index_double(return_value, degrees);
 }
 
 PHP_FUNCTION(rdp_simplify)
@@ -132,8 +160,25 @@ ZEND_BEGIN_ARG_INFO_EX(rdp_simplify_args, 0, 0, 2)
 	ZEND_ARG_INFO(0, epsilon)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(cartesian_to_polar_args, 0, 0, 4)
+	ZEND_ARG_INFO(0, x)
+	ZEND_ARG_INFO(0, y)
+	ZEND_ARG_INFO(1, radius)
+	ZEND_ARG_INFO(1, degrees)
+ZEND_END_ARG_INFO()
+
+
+ZEND_BEGIN_ARG_INFO_EX(polar_to_cartesian_args, 0, 0, 4)
+	ZEND_ARG_INFO(0, radius)
+	ZEND_ARG_INFO(0, degrees)
+	ZEND_ARG_INFO(1, x)
+	ZEND_ARG_INFO(1, y)
+ZEND_END_ARG_INFO()
+
 const zend_function_entry geospatial_functions[] = {
 	PHP_FE(rdp_simplify, rdp_simplify_args)
+	PHP_FE(cartesian_to_polar, cartesian_to_polar_args)
+	PHP_FE(polar_to_cartesian, polar_to_cartesian_args)
 	{ NULL, NULL, NULL }
 };
 

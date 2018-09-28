@@ -59,6 +59,8 @@ int polar_to_cartesian(double radius, double angle, double *x, double *y)
 	$x = $radius * cos(deg2rad(angle));
 	$y = $radius * sin(deg2rad(angle));
 	*/
+	*x = radius * cos(deg2rad(angle));
+	*y = radius * sin(deg2rad(angle));
 }
 
 int cartesian_to_polar(double x, double y, double *radius, double *angle)
@@ -67,4 +69,6 @@ int cartesian_to_polar(double x, double y, double *radius, double *angle)
 	$radius = sqrt($x * $x + $y * $y);
 	$angle  = rad2deg(atan2($y, $x));
 	*/
+	*radius = sqrt(x * x + y * y);
+	*angle  = rad2deg(atan2(y, x));
 }
